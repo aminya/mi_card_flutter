@@ -8,8 +8,8 @@ tasks:
     - dart format ./lib/ --fix --line-length 110
 
   upgrade:
-    - dart pub outdated
-    - dart pub upgrade
+    - dart pub outdated --show-all
+    - dart pub upgrade --major-versions
     - pnpm exec ncu -u
     - pnpm update
 
