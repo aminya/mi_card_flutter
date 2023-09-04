@@ -1,6 +1,4 @@
-import { minify } from "terser"
-
-import { options } from "./.terserrc.js"
+import swc from "@swc/core"
 
 import glob from "fast-glob"
 import { transformFiles } from "./lib.js"
@@ -14,7 +12,11 @@ async function main() {
     absolute: true,
   })
   await transformFiles(htmlFiles, async (content: string, path: PathLike) => {
-    const result = await minify({ [path as string]: content }, options)
+    const result = await swc.transform(content, {
+      filename: path as string,
+      swcrc: true,
+    })
+
     return [result.code ?? "", path]
   })
 }

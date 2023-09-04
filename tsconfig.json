@@ -13,7 +13,7 @@
       "ScriptHost"
     ],
     "importHelpers": false,
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "allowJs": true,
     "esModuleInterop": true,
