@@ -23,11 +23,18 @@ tasks:
   build:
     - flutter build {{.CLI_ARGS}}
 
+  dev_web:
+    - flutter run --web-renderer html
+
   build_web:
     cmds:
       - pnpm install
       - flutter build web --release --dart2js-optimization=O4 --web-renderer html
-      - pnpm exec ts-node --swc --esm ./scripts/terser.ts
+      - pnpm exec parcel build
+      - cp -r --no-clobber ./build/web/assets ./build/web-dist
+      - cp -r --no-clobber ./build/web/canvaskit ./build/web-dist
+      - cp -r --no-clobber ./build/web/*.json ./build/web-dist
+      - cp -r --no-clobber ./build/web/*.js ./build/web-dist
 
   # Run
 
@@ -40,4 +47,4 @@ tasks:
 
   run_web:
     - task: build_web
-    - pnpm exec servor ./build/web
+    - pnpm exec servor ./build/web-dist
