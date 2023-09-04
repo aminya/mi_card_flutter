@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    // target
+    "target": "EsNext",
+    "lib": [
+      "es2021",
+      "EsNext",
+      "DOM",
+      "DOM.Iterable",
+      "WebWorker",
+      "WebWorker.ImportScripts",
+      "Webworker.Iterable",
+      "ScriptHost"
+    ],
+    "importHelpers": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    // // solidjs
+    // "noEmit": true,
+    // "jsx": "preserve",
+    // "jsxImportSource": "solid-js",
+    // check
+    "strict": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noFallthroughCasesInSwitch": true,
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    // build
+    "incremental": true,
+    "inlineSourceMap": false,
+    "inlineSources": false,
+    "sourceMap": true,
+    "preserveSymlinks": true
+  },
+  "include": ["scripts"]
+}

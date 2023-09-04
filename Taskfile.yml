@@ -1,0 +1,43 @@
+version: "3"
+
+tasks:
+  clean:
+    - flutter clean
+
+  format:
+    - dart format ./lib/ --fix --line-length 110
+
+  upgrade:
+    - dart pub outdated
+    - dart pub upgrade
+    - pnpm exec ncu -u
+    - pnpm update
+
+  # Dev
+
+  dev:
+    - flutter run
+
+  # Build
+
+  build:
+    - flutter build {{.CLI_ARGS}}
+
+  build_web:
+    cmds:
+      - pnpm install
+      - flutter build web --release --dart2js-optimization=O4 --web-renderer html
+      - pnpm exec ts-node --swc --esm ./scripts/terser.ts
+
+  # Run
+
+  run_windows:
+    cmds:
+      - task: build
+        vars:
+          CLI_ARGS: windows
+      - ./build/windows/runner/Release/decide.exe
+
+  run_web:
+    - task: build_web
+    - pnpm exec servor ./build/web
